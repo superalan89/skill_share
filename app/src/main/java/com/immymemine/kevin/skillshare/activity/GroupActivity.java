@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.widget.EditText;
 
 import com.immymemine.kevin.skillshare.R;
 import com.immymemine.kevin.skillshare.adapter.GroupChattingAdapter;
@@ -19,12 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupActivity extends AppCompatActivity implements GroupChattingAdapter.OnLoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, GroupChattingAdapter.HashTagInterface {
 
     private Toolbar toolbar;
     private GroupChattingAdapter mAdapter;
     private ArrayList<GroupItem> groupItemList;
     private SwipeRefreshLayout swipeRefresh;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,10 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
         setContentView(R.layout.activity_group);
 
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.chatting_toolbar_menu);
+
+        editText = findViewById(R.id.edit_text_message);
 
         groupItemList = new ArrayList<>();
         RecyclerView mRecyclerView =  findViewById(R.id.recycler_view_chatting);
@@ -51,6 +56,14 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
                 }
             }
         });
+    }
+
+    // Toolbar 메뉴
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.chatting_toolbar_menu, menu);
+        return true;
     }
 
     @Override
@@ -117,6 +130,11 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
             groupItemList.add(new GroupItem("GroupItem " + i));
         }
         mAdapter.addAll(groupItemList);
+    }
+
+    @Override
+    public void appendHashTag(String nickname) {
+        editText.append(nickname);
     }
 }
 

@@ -74,7 +74,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         public GroupViewHolder(View view) {
             super(view);
             if(size != 0) {
-                imageView = view.findViewById(R.id.image_view_tutor);
+//                imageView = view.findViewById(R.id.image_button_select_picture);
                 textViewCount = view.findViewById(R.id.text_view_count);
                 textViewGroup = view.findViewById(R.id.text_view_group);
                 view.setOnClickListener(v -> {

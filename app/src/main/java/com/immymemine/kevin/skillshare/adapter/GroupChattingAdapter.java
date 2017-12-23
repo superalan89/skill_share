@@ -4,6 +4,7 @@ package com.immymemine.kevin.skillshare.adapter;
  * Created by super on 2017-12-12.
  */
 
+import android.content.Context;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,14 +30,17 @@ public class GroupChattingAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private OnLoadMoreListener onLoadMoreListener;
 
+    private HashTagInterface hashTagInterface;
+
     private boolean isMoreLoading = true;
 
     public interface OnLoadMoreListener{
         void onLoadMore();
     }
 
-    public GroupChattingAdapter(GroupActivity onLoadMoreListener) {
-        this.onLoadMoreListener=onLoadMoreListener;
+    public GroupChattingAdapter(Context context) {
+        onLoadMoreListener = (OnLoadMoreListener)context;
+        hashTagInterface = (HashTagInterface)context;
         groupItemList =new ArrayList<>();
     }
 
@@ -102,35 +106,33 @@ public class GroupChattingAdapter extends RecyclerView.Adapter<RecyclerView.View
             GroupItem singleGroupItem = (GroupItem) groupItemList.get(position);
 //            ((GroupChattingHolder) holder).imageViewProfile.setImageURI(singleGroupItem.getItem());
             ((GroupChattingHolder) holder).textViewProfile.setText(singleGroupItem.getItem());
-            ((GroupChattingHolder) holder).textViewProfileHashtag.setText(singleGroupItem.getItem());
-            ((GroupChattingHolder) holder).expandableTextView.setText(singleGroupItem.getItem());
-            ((GroupChattingHolder) holder).textViewTime.setText(singleGroupItem.getItem());
-            ((GroupChattingHolder) holder).textViewLike.setText(singleGroupItem.getItem());
+            ((GroupChattingHolder) holder).textViewProfileNickName.setText(singleGroupItem.getItem());
+            ((GroupChattingHolder) holder).textViewMessage.setText(singleGroupItem.getItem());
         }
     }
-
 
     @Override
     public int getItemCount() {
         return groupItemList.size();
     }
 
-    static class GroupChattingHolder extends RecyclerView.ViewHolder {
+    class GroupChattingHolder extends RecyclerView.ViewHolder {
         ImageView imageViewProfile;
         TextView textViewProfile;
-        TextView textViewProfileHashtag;
-        ExpandableTextView expandableTextView;
+        TextView textViewProfileNickName;
+        TextView textViewMessage;
         TextView textViewTime;
-        TextView textViewLike;
+        TextView textViewReply;
 
         public GroupChattingHolder(View v) {
             super(v);
-            imageViewProfile = (ImageView) v.findViewById(R.id.image_view_profile);
-            textViewProfile = (TextView) v.findViewById(R.id.text_view_profile);
-            textViewProfileHashtag = (TextView) v.findViewById(R.id.text_view_profile_hashtag);
-            expandableTextView = (ExpandableTextView) v.findViewById(R.id.expandable_text_view);
-            textViewTime = (TextView) v.findViewById(R.id.text_view_time);
-            textViewLike = (TextView) v.findViewById(R.id.text_view_like_count);
+            imageViewProfile = v.findViewById(R.id.image_view_profile);
+            textViewProfile = v.findViewById(R.id.text_view_profile);
+            textViewProfileNickName = v.findViewById(R.id.text_view_profile_nickname);
+            textViewMessage = v.findViewById(R.id.text_view_message);
+            textViewTime = v.findViewById(R.id.text_view_time);
+            textViewReply = v.findViewById(R.id.text_view_reply);
+            textViewReply.setOnClickListener(v1 -> hashTagInterface.appendHashTag(" @" + textViewProfileNickName.getText().toString()+" "));
         }
     }
 
@@ -140,5 +142,9 @@ public class GroupChattingAdapter extends RecyclerView.Adapter<RecyclerView.View
             super(v);
             pBar = (ProgressBar) v.findViewById(R.id.pBar);
         }
+    }
+
+    public interface HashTagInterface {
+        void appendHashTag(String nickname);
     }
 }

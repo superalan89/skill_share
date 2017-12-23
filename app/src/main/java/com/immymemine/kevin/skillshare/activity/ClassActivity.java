@@ -100,7 +100,7 @@ public class ClassActivity extends AppCompatActivity {
                     // controller
                     simpleExoPlayerView.setUseController(true); //Set media controller
                     simpleExoPlayerView.showController();
-        });
+                });
     }
 
     private void setTabLayout() {

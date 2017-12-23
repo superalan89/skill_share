@@ -35,6 +35,7 @@ import com.immymemine.kevin.skillshare.network.RetrofitHelper;
 import com.immymemine.kevin.skillshare.network.api.HomeService;
 import com.immymemine.kevin.skillshare.network.api.UserService;
 import com.immymemine.kevin.skillshare.utility.ConstantUtil;
+import com.immymemine.kevin.skillshare.utility.DialogUtil;
 import com.immymemine.kevin.skillshare.view.ViewFactory;
 
 import java.util.ArrayList;
@@ -210,6 +211,15 @@ public class MainActivity extends AppCompatActivity implements ViewFactory.Inter
         toolbar_title = findViewById(R.id.toolbar_title);
         toolbar_left_button = findViewById(R.id.toolbar_button_l);
         toolbar_right_button = findViewById(R.id.toolbar_button_r);
+
+        findViewById(R.id.toolbar_button_r).setOnClickListener(v -> {
+            new Thread() {
+                public void run() {
+
+                }
+            }.start();
+            DialogUtil.showCreateGroupDialog(MainActivity.this, this);
+        });
 
         scrollView = findViewById(R.id.scroll_view);
 

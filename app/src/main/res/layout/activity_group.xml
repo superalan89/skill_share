@@ -39,7 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="10dp"
                 android:text="Illustrators"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
@@ -53,8 +52,9 @@
 
                 <ImageView
                     android:id="@+id/imageview_person"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center_vertical"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_person"
                     android:tint="@color/white" />
@@ -63,6 +63,7 @@
                     android:id="@+id/textview_lookup_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="5.4K"
                     android:textSize="12sp" />
 
@@ -70,22 +71,12 @@
                     android:id="@+id/textview_members"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="members"
                     android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
-
-        <!--<ImageButton
-            android:id="@+id/toolbar_button_exit"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="10sp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_menu"
-            android:tint="@color/white" />-->
 
     </android.support.v7.widget.Toolbar>
 
@@ -94,27 +85,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="#dddedf"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/recycler_view_item_chatting"></android.support.v7.widget.RecyclerView>
-
 
     <LinearLayout
         android:id="@+id/layout_frame_discussion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#dadada"
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edit_text_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_weight="1"
+            android:background="@color/white"
             android:ems="10"
             android:hint="Message (use @username to reply)"
             android:inputType="textPersonName"
+            android:paddingBottom="5dp"
             android:paddingLeft="8dp"
+            android:paddingTop="5dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@color/IcDisabled" />
+            android:textColorHint="@color/IcDisabled">
+            <requestFocus />
+        </EditText>
 
         <Button
             android:id="@+id/button_send"

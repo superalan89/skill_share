@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.immymemine.kevin.skillshare.R;
+import com.immymemine.kevin.skillshare.utility.DialogUtil;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -43,7 +43,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/text_view_profile_hashtag"
+                    android:id="@+id/text_view_profile_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -52,15 +52,14 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <com.immymemine.kevin.skillshare.view.ExpandableTextView
-                android:id="@+id/expandable_text_view"
+            <TextView
+                android:id="@+id/text_view_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:trimLength="5"
                 tools:text="test Message test Message test Message test Message test Message test Message test Message test Message test Message test Message " />
 
             <LinearLayout
@@ -82,7 +81,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/text_view_like_count"
+                    android:id="@+id/text_view_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

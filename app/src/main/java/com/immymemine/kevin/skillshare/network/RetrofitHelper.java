@@ -16,7 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitHelper {
-    public static final String BASE_URL = "http://192.168.1.105:8079/";
+    public static final String BASE_URL = "http://10.0.2.2:8079/";
+    //public static final String BASE_URL = "http://192.168.0.240:8079/";
 
 
 
@@ -29,9 +30,9 @@ public class RetrofitHelper {
 
     // Retrofit Builder
     private static Retrofit.Builder builder =new Retrofit.Builder()
-                                                         .baseUrl(BASE_URL)
-                                                         .addConverterFactory(GsonConverterFactory.create())
-                                                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
     // Retrofit
     private static Retrofit retrofit = builder.build();
 
