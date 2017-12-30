@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -205,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements ViewFactory.Inter
     private void handleError(Throwable error) {
         Log.e("JUWONLEE", error.getMessage());
     }
-
+    View view;
     private void initiateView() {
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
@@ -213,12 +215,7 @@ public class MainActivity extends AppCompatActivity implements ViewFactory.Inter
         toolbar_right_button = findViewById(R.id.toolbar_button_r);
 
         findViewById(R.id.toolbar_button_r).setOnClickListener(v -> {
-            new Thread() {
-                public void run() {
-
-                }
-            }.start();
-            DialogUtil.showCreateGroupDialog(MainActivity.this, this);
+            view = DialogUtil.showCreateGroupDialog(MainActivity.this, this);
         });
 
         scrollView = findViewById(R.id.scroll_view);
@@ -581,6 +578,19 @@ public class MainActivity extends AppCompatActivity implements ViewFactory.Inter
 //
 //            }
 
+        if (resultCode == RESULT_OK) {
+            Uri imageUri = null;
+            switch (requestCode) {
+                case 222:
+                    if (data != null) {
+                        imageUri = data.getData();
+                        Glide.with(this).load(imageUri)
+                                .apply(RequestOptions.centerCropTransform())
+                                .into((ImageView)view.findViewById(R.id.image_select_picture));
+                    }
+                    break;
+            }
+        }
     }
 
     @Override

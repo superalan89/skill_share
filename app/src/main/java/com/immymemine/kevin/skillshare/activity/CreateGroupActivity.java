@@ -22,12 +22,12 @@ public class CreateGroupActivity extends AppCompatActivity {
     ImageView imageSelectPicture;
     Button imageButtonGallery;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_create_group);
         initView();
+        init();
     }
 
     int limit = 40;
@@ -42,7 +42,6 @@ public class CreateGroupActivity extends AppCompatActivity {
                     textViewCharactersLeft.setText(left + " characters left");
 
                 });
-
 
         imageButtonGallery = findViewById(R.id.image_button_gallery);
         imageButtonGallery.setOnClickListener(new View.OnClickListener() {
@@ -62,21 +61,18 @@ public class CreateGroupActivity extends AppCompatActivity {
         imageSelectPicture = (ImageView) findViewById(R.id.image_select_picture);
     }
 
-//    public void onGallery(View view) {
-//        Intent intent = new Intent(Intent.ACTION_PICK);
-//        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-//        startActivityForResult(intent, REQ_GALLERY);
-//    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e("onActivityResult","-----------------");
         if (resultCode == RESULT_OK) {
             Uri imageUri = null;
+
             switch (requestCode) {
                 case REQ_GALLERY:
                     if (data != null) {
                         imageUri = data.getData();
+
                         imageSelectPicture.setImageURI(imageUri);
                     }
                     break;

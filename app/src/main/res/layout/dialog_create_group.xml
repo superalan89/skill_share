@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     tools:context="com.immymemine.kevin.skillshare.activity.CreateGroupActivity">
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
@@ -55,7 +54,6 @@
             android:id="@+id/image_button_gallery"
             android:layout_width="40dp"
             android:layout_height="40dp"
-
             android:layout_alignBottom="@+id/image_select_picture"
             android:layout_alignEnd="@+id/image_select_picture"
             android:layout_alignRight="@+id/image_select_picture"

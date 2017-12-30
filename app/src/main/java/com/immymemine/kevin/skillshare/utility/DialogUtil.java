@@ -32,7 +32,7 @@ public class DialogUtil {
         builder.show();
     }
 
-    public static void showCreateGroupDialog(Context context, Activity activity) {
+    public static View showCreateGroupDialog(Context context, Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_create_group, null, false);
         int limit = 40;
@@ -60,6 +60,7 @@ public class DialogUtil {
 
         builder.setView(view);
         AlertDialog dialog = builder.show();
+
         buttonCreateGroup.setOnClickListener(
                 v -> {
                     dialog.dismiss();
@@ -78,5 +79,6 @@ public class DialogUtil {
                 }
         );
 
+        return view;
     }
 }

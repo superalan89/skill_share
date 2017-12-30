@@ -22,7 +22,6 @@ import java.util.List;
 
 public class GroupActivity extends AppCompatActivity implements GroupChattingAdapter.OnLoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener, GroupChattingAdapter.HashTagInterface {
-
     private Toolbar toolbar;
     private GroupChattingAdapter mAdapter;
     private ArrayList<GroupItem> groupItemList;
@@ -35,17 +34,18 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
         setContentView(R.layout.activity_group);
 
         toolbar = findViewById(R.id.toolbar);
-        // setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.chatting_toolbar_menu);
-
         editText = findViewById(R.id.edit_text_message);
 
         groupItemList = new ArrayList<>();
         RecyclerView mRecyclerView =  findViewById(R.id.recycler_view_chatting);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new GroupChattingAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
+
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -94,7 +94,6 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
                 super.onPreExecute();
                 mAdapter.showLoading();
             }
-
             // swype add item에 대한 코드
             @Override
             protected List<GroupItem> doInBackground(Void... voids) {
@@ -137,5 +136,3 @@ public class GroupActivity extends AppCompatActivity implements GroupChattingAda
         editText.append(nickname);
     }
 }
-
-
